@@ -1,8 +1,24 @@
 package com.github.leetcode.twosum1;
 
-final class TwoSum {
+import java.util.HashMap;
 
-    public static void main(String[] args) {
-        System.out.println("Two Sum");
+class TwoSum {
+
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+
+            if (map.containsKey(complement)) {
+                return new int[]{
+                        map.get(complement), i
+                };
+            }
+
+            map.put(nums[i], i);
+        }
+
+        throw new IllegalArgumentException("No two sum solution");
     }
 }
