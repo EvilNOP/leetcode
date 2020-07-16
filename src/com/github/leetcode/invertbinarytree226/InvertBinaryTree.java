@@ -14,7 +14,7 @@ class TreeNode {
     }
 }
 
-class Solution {
+public class InvertBinaryTree {
 
     public TreeNode invertTreeRecursively(TreeNode root) {
         if (root == null) {
