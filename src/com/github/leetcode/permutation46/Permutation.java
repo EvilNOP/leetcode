@@ -1,34 +1,42 @@
 package com.github.leetcode.permutation46;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.Deque;
 import java.util.List;
 
-class Solution {
-
-    public void backtrack(int n,
-                          ArrayList<Integer> output,
-                          List<List<Integer>> res,
-                          int first) {
-        if (first == n)
-            res.add(new ArrayList<>(output));
-        for (int i = first; i < n; i++) {
-            Collections.swap(output, first, i);
-            backtrack(n, output, res, first + 1);
-            Collections.swap(output, first, i);
-        }
-    }
+class Permutation {
 
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> res = new LinkedList();
-
-        ArrayList<Integer> output = new ArrayList<>();
-        for (int num : nums)
-            output.add(num);
-
         int n = nums.length;
-        backtrack(n, output, res, 0);
+        boolean[] used = new boolean[n];
+        Deque<Integer> path = new ArrayDeque<>(n);
+        List<List<Integer>> res = new ArrayList<>(n);
+
+        backtrack(0, n, nums, used, path, res);
+
         return res;
+    }
+
+    public void backtrack(int depth, int n, int[] nums, boolean[] used, Deque<Integer> path, List<List<Integer>> res) {
+        if (depth == n) {
+            res.add(new ArrayList<>(path));
+
+            return;
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (used[i]) {
+                continue;
+            }
+
+            used[i] = true;
+            path.addLast(nums[i]);
+
+            backtrack(depth + 1, n, nums, used, path, res);
+
+            used[i] = false;
+            path.removeLast();
+        }
     }
 }
