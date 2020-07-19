@@ -1,11 +1,11 @@
-package com.github.leetcode.permutation46;
+package com.github.leetcode.permutations46;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-class Permutation {
+public class Permutation {
 
     public List<List<Integer>> permute(int[] nums) {
         int n = nums.length;
