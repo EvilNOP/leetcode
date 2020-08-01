@@ -1,16 +1,18 @@
-package com.github.leetcode.permutationsunique47;
+package com.github.leetcode.permutations46;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
-public class PermutationUnique {
+public class Permutations46 {
 
-    public List<List<Integer>> permuteUnique(int[] nums) {
+    public List<List<Integer>> permute(int[] nums) {
         int n = nums.length;
         boolean[] used = new boolean[n];
         Deque<Integer> path = new ArrayDeque<>(n);
         List<List<Integer>> res = new ArrayList<>(n);
 
-        Arrays.sort(nums);
         backtrack(0, n, nums, used, path, res);
 
         return res;
@@ -25,10 +27,6 @@ public class PermutationUnique {
 
         for (int i = 0; i < n; i++) {
             if (used[i]) {
-                continue;
-            }
-
-            if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {
                 continue;
             }
 
