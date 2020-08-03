@@ -27,7 +27,7 @@ Input: amount = 10, coins = [10]
 Output: 1
 ```
 
-Note:
+# Note:
 
 You can assume that
 
@@ -36,7 +36,7 @@ You can assume that
 the number of coins is less than 500
 the answer is guaranteed to fit into signed 32-bit integer
 
-Thoughts:
+# Thoughts:
 
 coins: [1, 2, 5], amount = 5
 
@@ -51,6 +51,6 @@ DP[i][j] = DP[j - coin[i]][j] + DP[i - 1][j]
 
 DP[i][j] = combinations
 
-State Space Reduction:
+## State Space Reduction:
 
 DP[x] = DP[x] + dp[x - coin]
