@@ -3,7 +3,7 @@ package com.github.leetcode.coinchange322;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class CoinChange {
+public class CoinChange322 {
 
     private final HashMap<Integer, Integer> memo = new HashMap<>();
 
