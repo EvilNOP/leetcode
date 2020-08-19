@@ -39,4 +39,23 @@ public class MaxProfit122 {
 
         return maxProfit;
     }
+
+    public int maxProfit(int[] prices, int buy) {
+        if (buy == prices.length) {
+            return 0;
+        }
+
+        int lowestPrice = prices[buy];
+        int maxProfit = 0;
+
+        for (int i = buy + 1; i < prices.length; i++) {
+            if (prices[i] < lowestPrice) {
+                lowestPrice = prices[i];
+            } else if ((prices[i] - lowestPrice) > maxProfit) {
+                maxProfit = (prices[i] - lowestPrice) + maxProfit(prices, i + 1);
+            }
+        }
+
+        return maxProfit;
+    }
 }
