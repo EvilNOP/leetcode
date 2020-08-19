@@ -1,6 +1,6 @@
 package com.github.leetcode.maxprofit121;
 
-public class MaxProfit {
+public class MaxProfit121 {
 
     public int maxProfit(int[] prices) {
         int lowestPrice = Integer.MAX_VALUE;
