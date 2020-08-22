@@ -3,29 +3,17 @@ package com.github.leetcode.maxprofit122;
 public class MaxProfit122 {
 
     public int maxProfit(int[] prices) {
-        int lowestPriceIndex = 0;
-        int highPriceIndex = 0;
-        int maxProfit = 0;
+        int[][] dp = new int[prices.length][2];
+
+        dp[0][0] = 0;
+        dp[0][1] = -prices[0];
 
         for (int i = 1; i < prices.length; i++) {
-            if (prices[i] <= prices[highPriceIndex]) {
-                maxProfit += (prices[highPriceIndex] - prices[lowestPriceIndex]);
-
-                lowestPriceIndex = i;
-            }
-            highPriceIndex = i;
-
-            if (prices[i] < prices[lowestPriceIndex]) {
-                lowestPriceIndex = i;
-                highPriceIndex = i;
-            }
+            dp[i][0] = Math.max(dp[i - 1][1] + prices[i], dp[i - 1][0]);
+            dp[i][1] = Math.max(dp[i - 1][0] - prices[i], dp[i - 1][1]);
         }
 
-        if (highPriceIndex == prices.length - 1) {
-            maxProfit += (prices[highPriceIndex] - prices[lowestPriceIndex]);
-        }
-
-        return maxProfit;
+        return dp[prices.length - 1][0];
     }
 
     public int maxProfitLeetcode(int[] prices) {
