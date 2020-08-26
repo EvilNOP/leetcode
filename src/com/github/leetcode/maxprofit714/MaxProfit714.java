@@ -27,7 +27,6 @@ public class MaxProfit714 {
 
         for (int i = 1; i < prices.length; i++) {
             cash = Math.max(hold + prices[i] - fee, cash);
-
             hold = Math.max(cash - prices[i], hold);
         }
 
