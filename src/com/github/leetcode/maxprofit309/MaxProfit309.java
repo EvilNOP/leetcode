@@ -2,7 +2,7 @@ package com.github.leetcode.maxprofit309;
 
 public class MaxProfit309 {
 
-    public static int maxProfit(int[] prices) {
+    public int maxProfit(int[] prices) {
         if (prices.length == 0) {
             return 0;
         }
