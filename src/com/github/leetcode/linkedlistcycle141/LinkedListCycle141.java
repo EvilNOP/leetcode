@@ -10,7 +10,7 @@ class ListNode {
     }
 }
 
-public class LinkedListCycle {
+public class LinkedListCycle141 {
 
     public boolean hasCycle(ListNode head) {
         ListNode slow = head;
