@@ -1,6 +1,8 @@
 package com.github.leetcode.slidingwindowmax239;
 
 import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
 
 class MonotonicQueue {
 
@@ -27,7 +29,7 @@ class MonotonicQueue {
 
 public class MaxSlidingWindow {
 
-    public int[] maxSlidingWindow(int[] nums, int k) {
+    public static int[] maxSlidingWindow(int[] nums, int k) {
         int n = nums.length;
 
         if (n * k == 0) {
@@ -39,15 +41,29 @@ public class MaxSlidingWindow {
         }
 
         int[] ans = new int[n - k + 1];
-        MonotonicQueue monotonicQueue = new MonotonicQueue();
+        Deque<Integer> deque = new LinkedList<>();
 
-        for (int i = 0; i < nums.length; i++) {
-            if (i < k - 1) {
-                monotonicQueue.add(nums[i]);
-            } else {
-                monotonicQueue.add(nums[i]);
-                ans[i - k + 1] = monotonicQueue.front();
-                monotonicQueue.remove(nums[i - k + 1]);
+        for (int i = 0; i < k - 1; i++) {
+            while (!deque.isEmpty() && deque.getLast() < nums[i]) {
+                deque.removeLast();
+            }
+
+            deque.addLast(nums[i]);
+        }
+
+        int max;
+
+        for (int i = k - 1; i < nums.length; i++) {
+            while (!deque.isEmpty() && deque.getLast() < nums[i]) {
+                deque.removeLast();
+            }
+
+            deque.addLast(nums[i]);
+            max = deque.getFirst();
+            ans[i - k + 1] = max;
+
+            if (max == nums[i - k + 1]) {
+                deque.removeFirst();
             }
         }
 
