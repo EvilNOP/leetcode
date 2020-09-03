@@ -42,7 +42,7 @@ coins: [1, 2, 5], amount = 5
 
 |  Amount   | 1 | 2 | 3 | 4 | 5 |
 |  ----  | ----  | ---- | ---- | ---- | ---- |
-| Combinations using no coins | 1 | 0 | 0 | 0 |0 |
+| Combinations using no coins | 1 | 0 | 0 | 0 | 0 |
 | Combinations using 1 cent | 1 | 1 | 1 | 1 | 1 |
 | Combinations using 1, 2 cent | 1 | 2 | 2 | 3 | 3|
 | Combinations using 1, 2, 5 cent | 1 | 2 | 2 | 3 | 4 |

@@ -31,3 +31,16 @@ Constraints:
 1 <= m, n <= 100
 It's guaranteed that the answer will be less than or equal to 2 * 10 ^ 9.
 ```
+
+# Thoughts
+
+|  START | 3 | 1 |
+|  ----  | ---- | ---- |
+| 3 | 2 | 1 |
+| 1 | 1 | FINISH |
+
+DP[i][j] = DP[i + 1][j] + DP[i][j + 1]
+
+## State Space Reduction:
+
+DP[j] = DP[j] + dp[j + 1]
