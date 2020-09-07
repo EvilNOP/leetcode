@@ -1,15 +1,38 @@
 package com.github.leetcode.permutationsequence60;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class PermutationSequence {
 
     private int[] factorial;
 
-    public String getPermutation(int n, int k) {
+    public String getPermutationBacktrack(int n, int k) {
         boolean[] used = new boolean[n + 1];
         calculateFactorial(n);
 
         StringBuilder pathBuilder = new StringBuilder();
         backtrack(0, n, used, pathBuilder, k);
+
+        return pathBuilder.toString();
+    }
+
+    public String getPermutation(int n, int k) {
+        --k;
+        calculateFactorial(n);
+
+        StringBuilder pathBuilder = new StringBuilder();
+        List<Integer> nums = new LinkedList<>();
+
+        for (int i = 1; i <= n; i++) {
+            nums.add(i);
+        }
+
+        for (int i = n - 1; i >= 0; i--) {
+            int index = k / factorial[i];
+            pathBuilder.append(nums.remove(index));
+            k -= index * factorial[i];
+        }
 
         return pathBuilder.toString();
     }
