@@ -23,7 +23,7 @@ public class Combinations {
             return;
         }
 
-        for (int j = i; j < n + 1; j++) {
+        for (int j = i; j <= n - (k - combination.size()) + 1; j++) {
             combination.addLast(j);
             combine(n, j + 1, k, combination, combinations);
             combination.removeLast();
