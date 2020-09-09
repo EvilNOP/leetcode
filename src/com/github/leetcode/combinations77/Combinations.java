@@ -23,6 +23,7 @@ public class Combinations {
             return;
         }
 
+        // Before pruning branches, j < n + 1
         for (int j = i; j <= n - (k - combination.size()) + 1; j++) {
             combination.addLast(j);
             combine(n, j + 1, k, combination, combinations);
