@@ -2,7 +2,7 @@ package com.github.leetcode.combinationsum39;
 
 import java.util.*;
 
-public class CombinationSum {
+public class CombinationSum39 {
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         int n = candidates.length;
