@@ -3,7 +3,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 Example:
 
 ```
-Input: n = 4, k = 2
+Input: n = 4, k = 2
 Output:
 [
   [2,4],
