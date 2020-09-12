@@ -1,59 +1,69 @@
 package com.github.leetcode.minimumwindowsubstring76;
 
-import java.util.HashMap;
-
 public class MinimumWindowSubstring {
 
-    public String minWindow(String s, String t) {
+    public static String minWindow(String s, String t) {
+        int sLen = s.length();
+        int tLen = t.length();
+
+        if (sLen == 0 || tLen == 0 || sLen < tLen) {
+            return "";
+        }
+
         int leftIndex = 0;
         int rightIndex = 0;
-        int minWindowLeftIndex = 0;
+        int begin = 0;
         int minLength = Integer.MAX_VALUE;
-        int matchesCount = 0;
-        int sLen = s.length();
+        int distance = 0;
 
-        HashMap<Character, Integer> targetCharsCount = new HashMap<>();
-        HashMap<Character, Integer> windowCharsCount = new HashMap<>();
+        char[] sCharArray = s.toCharArray();
+        char[] tCharArray = t.toCharArray();
 
-        for (int i = 0; i < t.length(); i++) {
-            targetCharsCount.put(t.charAt(i), targetCharsCount.getOrDefault(t.charAt(i), 0) + 1);
+        int[] tFrequency = new int[128];
+        int[] windowFrequency = new int[128];
+
+        for (char c : tCharArray) {
+            tFrequency[c]++;
         }
 
         while (rightIndex < sLen) {
-            char c1 = s.charAt(rightIndex);
+            char c1 = sCharArray[rightIndex];
 
-            if (targetCharsCount.get(c1) != null) {
-                int count = windowCharsCount.getOrDefault(c1, 0) + 1;
-                windowCharsCount.put(c1, count);
-
-                if (count == targetCharsCount.get(c1)) {
-                    matchesCount++;
-                }
+            if (tFrequency[c1] == 0) {
+                rightIndex++;
+                continue;
             }
 
-            while (matchesCount == targetCharsCount.size()) {
+            if (windowFrequency[c1] < tFrequency[c1]) {
+                distance++;
+            }
+
+            windowFrequency[c1]++;
+
+            while (distance == tLen) {
                 if (rightIndex - leftIndex < minLength) {
-                    minWindowLeftIndex = leftIndex;
+                    begin = leftIndex;
                     minLength = rightIndex - leftIndex;
                 }
 
-                char c2 = s.charAt(leftIndex);
+                char c2 = sCharArray[leftIndex++];
 
-                if (windowCharsCount.get(c2) != null) {
-                    int count = windowCharsCount.get(c2) - 1;
-                    windowCharsCount.put(c2, count);
+                if (windowFrequency[c2] > 0) {
+                    windowFrequency[c2]--;
 
-                    if (count < targetCharsCount.get(c2)) {
-                        matchesCount--;
+                    if (windowFrequency[c2] < tFrequency[c2]) {
+                        distance--;
                     }
                 }
-
-                leftIndex++;
             }
 
             rightIndex++;
         }
 
-        return minLength == Integer.MAX_VALUE ? "" : s.substring(minWindowLeftIndex, minWindowLeftIndex + minLength + 1);
+        return minLength == Integer.MAX_VALUE ? "" : s.substring(begin, begin + minLength + 1);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(minWindow("ADOBECODEBANC", "ABC"));
     }
 }
