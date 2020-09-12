@@ -2,7 +2,7 @@ package com.github.leetcode.minimumwindowsubstring76;
 
 public class MinimumWindowSubstring {
 
-    public static String minWindow(String s, String t) {
+    public String minWindow(String s, String t) {
         int sLen = s.length();
         int tLen = t.length();
 
@@ -61,9 +61,5 @@ public class MinimumWindowSubstring {
         }
 
         return minLength == Integer.MAX_VALUE ? "" : s.substring(begin, begin + minLength + 1);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(minWindow("ADOBECODEBANC", "ABC"));
     }
 }
