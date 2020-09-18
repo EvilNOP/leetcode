@@ -1,6 +1,6 @@
-package com.github.leetcode.longestcommonsubquence1143;
+package com.github.leetcode.longestcommonsubsequence1143;
 
-public class LongestCommonSubquence {
+public class LongestCommonSubsequence {
 
     public int longestCommonSubsequence(String text1, String text2) {
         int m = text1.length();
