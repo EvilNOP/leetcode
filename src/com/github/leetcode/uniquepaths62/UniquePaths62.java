@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class UniquePaths62 {
 
-    public static int uniquePaths(int m, int n) {
+    public int uniquePaths(int m, int n) {
         int[] dp = new int[n];
 
         Arrays.fill(dp, 1);
@@ -16,9 +16,5 @@ public class UniquePaths62 {
         }
 
         return dp[0];
-    }
-
-    public static void main(String[] args) {
-        System.out.println(uniquePaths(7, 3));
     }
 }

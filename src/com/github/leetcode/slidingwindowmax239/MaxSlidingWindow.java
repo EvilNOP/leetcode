@@ -29,7 +29,7 @@ class MonotonicQueue {
 
 public class MaxSlidingWindow {
 
-    public static int[] maxSlidingWindow(int[] nums, int k) {
+    public int[] maxSlidingWindow(int[] nums, int k) {
         int n = nums.length;
 
         if (n * k == 0) {

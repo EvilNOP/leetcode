@@ -2,14 +2,14 @@ package com.github.leetcode.wordsearch79;
 
 public class WordSearch {
 
-    private static final int[][] directions = {
+    private final int[][] directions = {
             {-1, 0},
             {1, 0},
             {0, -1},
             {0, 1}
     };
 
-    public static boolean exist(char[][] board, String word) {
+    public boolean exist(char[][] board, String word) {
         int m = board.length;
         int n = board[0].length;
 
@@ -27,7 +27,7 @@ public class WordSearch {
         return false;
     }
 
-    public static boolean backtrack(int m, int n, int i, int j, int begin, char[][] board, char[] words, boolean[][] used) {
+    public boolean backtrack(int m, int n, int i, int j, int begin, char[][] board, char[] words, boolean[][] used) {
         if (begin == words.length - 1) {
             return board[i][j] == words[begin];
         }
@@ -54,16 +54,7 @@ public class WordSearch {
         return false;
     }
 
-    public static boolean withinBoundary(int m, int n, int x, int y) {
+    public boolean withinBoundary(int m, int n, int x, int y) {
         return x >= 0 && x < m && y >= 0 && y < n;
-    }
-
-    public static void main(String[] args) {
-        char[][] board = {
-                {'A', 'B', 'C', 'E'},
-                {'S', 'F', 'C', 'S'},
-                {'A', 'D', 'E', 'E'}
-        };
-        System.out.println(exist(board, "ABCB"));
     }
 }

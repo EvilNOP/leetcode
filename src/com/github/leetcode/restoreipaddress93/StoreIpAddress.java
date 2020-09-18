@@ -5,8 +5,8 @@ import java.util.List;
 
 public class StoreIpAddress {
 
-    static final int SEG_COUNT = 4;
-    List<String> ans = new ArrayList<String>();
+    final int SEG_COUNT = 4;
+    List<String> ans = new ArrayList<>();
     int[] segments = new int[SEG_COUNT];
 
     public List<String> restoreIpAddresses(String s) {
