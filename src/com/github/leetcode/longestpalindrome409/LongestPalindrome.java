@@ -45,6 +45,41 @@ public class LongestPalindrome {
         return s.substring(pair.first, pair.second + 1);
     }
 
+    public String longestPalindromeDP(String s) {
+        int n = s.length();
+
+        if (n <= 1) {
+            return s;
+        }
+
+        boolean[][] dp = new boolean[n][n];
+        char[] sCharArray = s.toCharArray();
+
+        int left = 0;
+        int right = 0;
+
+        for (int len = 0; len < n; len++) {
+            for (int i = 0; i + len < n; i++) {
+                int j = i + len;
+
+                if (len == 0) {
+                    dp[i][j] = true;
+                } else if (len == 1) {
+                    dp[i][j] = sCharArray[i] == sCharArray[j];
+                } else {
+                    dp[i][j] = sCharArray[i] == sCharArray[j] && dp[i + 1][j - 1];
+                }
+
+                if (dp[i][j] && ((j - i) > (right - left))) {
+                    left = i;
+                    right = j;
+                }
+            }
+        }
+
+        return s.substring(left, right + 1);
+    }
+
     public Pair<Integer> palindrome(char[] s, int left, int right) {
         while (left >= 0 && right < s.length && s[left] == s[right]) {
             left--;
