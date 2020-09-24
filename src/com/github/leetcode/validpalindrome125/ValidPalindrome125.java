@@ -1,6 +1,6 @@
 package com.github.leetcode.validpalindrome125;
 
-public class ValidPalindrome {
+public class ValidPalindrome125 {
 
     public boolean isPalindrome(String s) {
         int left = 0;
