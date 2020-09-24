@@ -1,24 +1,5 @@
 package com.github.leetcode.longestpalindrome409;
 
-class Pair<T> {
-
-    T first;
-    T second;
-
-    Pair(T first, T second) {
-        this.first = first;
-        this.second = second;
-    }
-
-    public T getFirst() {
-        return first;
-    }
-
-    public T getSecond() {
-        return second;
-    }
-}
-
 public class LongestPalindrome {
 
     public String longestPalindromeDP(String s) {
@@ -56,7 +37,7 @@ public class LongestPalindrome {
         return s.substring(left, right + 1);
     }
 
-    public static String longestPalindrome(String s) {
+    public String longestPalindrome(String s) {
         if (s.isEmpty()) {
             return "";
         }
@@ -87,16 +68,12 @@ public class LongestPalindrome {
         return s.substring(left, right + 1);
     }
 
-    public static int expandAroundCenter(char[] s, int left, int right) {
+    public int expandAroundCenter(char[] s, int left, int right) {
         while (left >= 0 && right < s.length && s[left] == s[right]) {
             left--;
             right++;
         }
 
         return right - left - 1;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(longestPalindrome("a"));
     }
 }
