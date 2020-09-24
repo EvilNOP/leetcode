@@ -1,4 +1,4 @@
-package com.github.leetcode.longestpalindrome409;
+package com.github.leetcode.longestpalindrome5;
 
 public class LongestPalindrome {
 
