@@ -21,30 +21,6 @@ class Pair<T> {
 
 public class LongestPalindrome {
 
-    public String longestPalindrome(String s) {
-        if (s.isEmpty()) {
-            return "";
-        }
-
-        char[] sCharArray = s.toCharArray();
-        Pair<Integer> pair = new Pair<>(0, 0);
-
-        for (int i = 0; i < sCharArray.length; i++) {
-            Pair<Integer> pair1 = palindrome(sCharArray, i, i);
-            Pair<Integer> pair2 = palindrome(sCharArray, i, i + 1);
-
-            if ((pair1.second - pair1.first) > (pair.second - pair.first)) {
-                pair = pair1;
-            }
-
-            if ((pair2.second - pair2.first) > (pair.second - pair.first)) {
-                pair = pair2;
-            }
-        }
-
-        return s.substring(pair.first, pair.second + 1);
-    }
-
     public String longestPalindromeDP(String s) {
         int n = s.length();
 
@@ -80,12 +56,47 @@ public class LongestPalindrome {
         return s.substring(left, right + 1);
     }
 
-    public Pair<Integer> palindrome(char[] s, int left, int right) {
+    public static String longestPalindrome(String s) {
+        if (s.isEmpty()) {
+            return "";
+        }
+
+        char[] sCharArray = s.toCharArray();
+        int left = 0;
+        int right = 0;
+
+        for (int i = 0; i < sCharArray.length; i++) {
+            int len = 0;
+            int oddPalindromeLen = expandAroundCenter(sCharArray, i, i);
+            int evenPalindromeLen = expandAroundCenter(sCharArray, i, i + 1);
+
+            if (oddPalindromeLen > len) {
+                len = oddPalindromeLen;
+            }
+
+            if (evenPalindromeLen > len) {
+                len = evenPalindromeLen;
+            }
+
+            if (len > (right - left)) {
+                left = i - (len - 1) / 2;
+                right = i + len / 2;
+            }
+        }
+
+        return s.substring(left, right + 1);
+    }
+
+    public static int expandAroundCenter(char[] s, int left, int right) {
         while (left >= 0 && right < s.length && s[left] == s[right]) {
             left--;
             right++;
         }
 
-        return new Pair<>(left + 1, right - 1);
+        return right - left - 1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(longestPalindrome("a"));
     }
 }
