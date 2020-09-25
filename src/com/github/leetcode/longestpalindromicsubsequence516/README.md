@@ -25,3 +25,8 @@ Constraints:
 
 - 1 <= s.length <= 1000
 - s consists only of lowercase English letters.
+
+# Thoughts:
+
+dp[i][j] = dp[i + 1][j - 1] + 2, s[i] == s[j]
+dp[i][j] = MAX(dp[i + 1][j], dp[i][j - 1]), s[i] != s[j]
