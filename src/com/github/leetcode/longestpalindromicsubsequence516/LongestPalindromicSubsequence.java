@@ -30,4 +30,38 @@ public class LongestPalindromicSubsequence {
 
         return dp[0][n - 1];
     }
+
+    public int longestPalindromeSubseqOptimizeSpace(String s) {
+        int n = s.length();
+        char[] sCharArray = s.toCharArray();
+
+        int[] dp = new int[n];
+
+        for (int i = n - 1; i >= 0; i--) {
+            dp[i] = 1;
+            int max = 0;
+
+            for (int j = i + 1; j < n; j++) {
+                int temp = dp[j];
+
+                if (sCharArray[i] == sCharArray[j]) {
+                    dp[j] = max + 2;
+                }
+
+                if (temp > max) {
+                    max = temp;
+                }
+            }
+        }
+
+        int max = 0;
+
+        for (int i : dp) {
+            if (i > max) {
+                max = i;
+            }
+        }
+
+        return max;
+    }
 }
