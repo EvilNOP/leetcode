@@ -26,6 +26,35 @@ class Node {
 
 public class PopulatingNextRightPointers {
 
+    public Node connect(Node root) {
+        if (root == null) {
+            return null;
+        }
+
+        Node parent = root;
+        Node leftMostNode = root.left;
+
+        while (leftMostNode != null) {
+            Node previousNode = null;
+
+            while (parent != null) {
+                parent.left.next = parent.right;
+
+                if (previousNode != null) {
+                    previousNode.next = parent.left;
+                }
+
+                previousNode = parent.right;
+                parent = parent.next;
+            }
+
+            parent = leftMostNode;
+            leftMostNode = leftMostNode.left;
+        }
+
+        return root;
+    }
+
     public Node connectInLevelOrder(Node root) {
         if (root == null) {
             return null;
