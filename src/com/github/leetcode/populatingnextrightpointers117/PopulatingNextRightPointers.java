@@ -23,52 +23,45 @@ class Node {
 
 public class PopulatingNextRightPointers {
 
+    Node previousNode;
+    Node nextStart;
+
     public Node connect(Node root) {
         if (root == null) {
             return null;
         }
 
-        Node parent = root;
-        Node leftMostNode = root.left != null ? root.left : root.right;
+        Node start = root;
 
-        while (leftMostNode != null) {
-            Node previousNode = null;
+        while (start != null) {
+            previousNode = null;
+            nextStart = null;
 
-            while (parent != null) {
-                if (previousNode != null) {
-                    previousNode.next = parent.left != null ? parent.left : parent.right;
+            for (Node temp = start; temp != null; temp = temp.next) {
+                if (temp.left != null) {
+                    handle(temp.left);
                 }
 
-                if (parent.left != null && parent.right != null) {
-                    parent.left.next = parent.right;
-                    previousNode = parent.right;
+                if (temp.right != null) {
+                    handle(temp.right);
                 }
-
-                if (parent.left != null && parent.right == null) {
-                    previousNode = parent.left;
-                }
-
-                if (parent.left == null && parent.right != null) {
-                    previousNode = parent.right;
-                }
-
-                parent = parent.next;
             }
 
-            while (parent == null && leftMostNode != null) {
-                if (leftMostNode.left != null || leftMostNode.right != null) {
-                    parent = leftMostNode;
-                    break;
-                }
-
-                leftMostNode = leftMostNode.next;
-            }
-
-            if (parent != null) {
-                leftMostNode = leftMostNode.left != null ? leftMostNode.left : leftMostNode.right;
-            }
+            start = nextStart;
         }
 
         return root;
+    }
+
+    public void handle(Node node) {
+        if (previousNode != null) {
+            previousNode.next = node;
+        }
+
+        if (nextStart == null) {
+            nextStart = node;
+        }
+
+        previousNode = node;
     }
 }
