@@ -1,6 +1,8 @@
 package com.github.leetcode.binarytreepreordertraversal114;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 class TreeNode {
@@ -38,5 +40,23 @@ public class BinaryTreePreorderTraversal {
         ans.add(root.val);
         preorderTraversal(root.left, ans);
         preorderTraversal(root.right, ans);
+    }
+
+    public List<Integer> preorderTraversalIteration(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        Deque<TreeNode> stack = new LinkedList<>();
+
+        while (!stack.isEmpty() || root != null) {
+            while (root != null) {
+                ans.add(root.val);
+                stack.push(root);
+                root = root.left;
+            }
+
+            root = stack.pop();
+            root = root.right;
+        }
+
+        return ans;
     }
 }
