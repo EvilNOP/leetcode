@@ -3,21 +3,24 @@ package com.github.leetcode.sortcolors75;
 public class SortColors {
 
     public void sortColors(int[] nums) {
-        int nextStart = sortColors(nums, 0, 0);
-        sortColors(nums, nextStart, 1);
-    }
+        int p0 = 0;
+        int p1 = 0;
 
-    public int sortColors(int[] nums, int start, int color) {
-        int end = start;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) {
+                swap(nums, i, p1);
+                ++p1;
+            } else if (nums[i] == 0) {
+                swap(nums, i, p0);
 
-        for (int i = start; i < nums.length; i++) {
-            if (nums[i] == color) {
-                swap(nums, end, i);
-                ++end;
+                if (p0 < p1) {
+                    swap(nums, i, p1);
+                }
+
+                ++p0;
+                ++p1;
             }
         }
-
-        return end;
     }
 
     public void swap(int[] nums, int i, int j) {
