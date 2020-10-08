@@ -1,6 +1,6 @@
 package com.github.leetcode.removeduplicates26;
 
-public class RemoveDuplicatesFromSortedArray {
+public class RemoveDuplicates26 {
 
     public int removeDuplicates(int[] nums) {
         if (nums.length == 0) {
