@@ -20,3 +20,8 @@ Constraints:
 
 - 1 <= nums.length <= 200
 - 1 <= nums[i] <= 100
+
+DP:
+
+- dp[i][j] = dp[i−1][j] ∣ dp[i−1][j−nums[i]], j ≥ nums[i]
+- dp[i][j] = dp[i−1][j], j < nums[i]
