@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-public class NQueens {
+public class NQueens51 {
 
     public List<List<String>> solveNQueens(int n) {
         List<List<String>> res = new ArrayList<>();
