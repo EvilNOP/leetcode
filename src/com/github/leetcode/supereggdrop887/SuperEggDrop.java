@@ -25,13 +25,23 @@ public class SuperEggDrop {
             return memo.get(key);
         }
 
+        int low = 1;
+        int high = n;
         int minDropsCount = Integer.MAX_VALUE;
 
-        for (int i = 1; i <= n; i++) {
-            minDropsCount = Math.min(
-                    minDropsCount,
-                    Math.max(dp(k - 1, i - 1), dp(k, n - i)) + 1
-            );
+        while (low <= high) {
+            int middle = (low + high) / 2;
+
+            int t1 = dp(k - 1, middle - 1);
+            int t2 = dp(k, n - middle);
+
+            if (t1 > t2) {
+                high = middle - 1;
+                minDropsCount = Math.min(minDropsCount, t1 + 1);
+            } else {
+                low = middle + 1;
+                minDropsCount = Math.min(minDropsCount, t2 + 1);
+            }
         }
 
         memo.put(key, minDropsCount);
