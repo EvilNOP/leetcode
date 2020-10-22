@@ -2,7 +2,7 @@ package com.github.leetcode.partitionequalsubsetsum416;
 
 public class PartitionEqualSubsetSum {
 
-    public static boolean canPartition(int[] nums) {
+    public boolean canPartition(int[] nums) {
         int n = nums.length;
 
         if (n < 2) {

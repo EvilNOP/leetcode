@@ -19,7 +19,7 @@ class ListNode {
 
 public class RemoveNthNode {
 
-    public static ListNode removeNthFromEnd(ListNode head, int n) {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode sentinel = new ListNode(0, head);
         ListNode slow = sentinel;
         ListNode fast = head;
