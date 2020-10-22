@@ -7,7 +7,26 @@ public class SuperEggDrop {
     private final HashMap<String, Integer> memo = new HashMap<>();
 
     public int superEggDrop(int K, int N) {
-        return dp(K, N);
+        if (N == 0) {
+            return 0;
+        }
+
+        if (K == 1) {
+            return N;
+        }
+
+        int m = 0;
+        int[][] dp = new int[K + 1][N + 1];
+
+        while (dp[K][m] < N) {
+            ++m;
+
+            for (int k = 1; k <= K; k++) {
+                dp[k][m] = dp[k][m - 1] + dp[k - 1][m - 1] + 1;
+            }
+        }
+
+        return m;
     }
 
     public int dp(int k, int n) {
