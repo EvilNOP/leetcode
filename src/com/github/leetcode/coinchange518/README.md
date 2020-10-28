@@ -47,7 +47,7 @@ coins: [1, 2, 5], amount = 5
 | Combinations using 1, 2 cent | 1 | 2 | 2 | 3 | 3|
 | Combinations using 1, 2, 5 cent | 1 | 2 | 2 | 3 | 4 |
 
-DP[i][j] = DP[j - coin[i]][j] + DP[i - 1][j]
+DP[i][j] = DP[i]][j - coin[i]] + DP[i - 1][j]
 
 DP[i][j] = combinations
 
