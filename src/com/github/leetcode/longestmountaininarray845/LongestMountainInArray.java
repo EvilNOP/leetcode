@@ -2,7 +2,7 @@ package com.github.leetcode.longestmountaininarray845;
 
 public class LongestMountainInArray {
 
-    public static int longestMountain(int[] A) {
+    public int longestMountain(int[] A) {
         int n = A.length;
         int ans = 0;
         int left = 0;
@@ -30,9 +30,5 @@ public class LongestMountainInArray {
         }
 
         return ans;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(longestMountain(new int[]{875, 884, 239, 731, 723, 685}));
     }
 }
