@@ -2,7 +2,7 @@ package com.github.leetcode.houserobber198;
 
 public class HouseRobber198 {
 
-    public static int rob(int[] nums) {
+    public int rob(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
